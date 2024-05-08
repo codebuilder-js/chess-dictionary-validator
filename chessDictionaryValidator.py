@@ -18,4 +18,42 @@ def printBoard():
     print(f'[{chessBoard['a1']}][{chessBoard['b1']}][{chessBoard['c1']}][{chessBoard['d1']}][{chessBoard['e1']}][{chessBoard['f1']}][{chessBoard['g1']}][{chessBoard['h1']}] 1')
     print(' A  B  C  D  E  F  G  H')
 
-printBoard()
+def isValidBoard(board):
+    wKing = 0
+    bKing = 0
+    wPawn = 0
+    bPawn = 0
+    wPieces = 0
+    bPieces = 0
+
+    for i in board.values():
+        if i == 'k':
+            wKing += 1
+        if i == 'K':
+            bKing += 1
+        if i == 'p':
+            wPawn += 1
+        if i == 'P':
+            bPawn += 1
+        if i.islower():
+            wPieces += 1
+        if i.isupper():
+            bPieces += 1
+
+        if wPieces >= 17 or bPieces >= 17:
+            print('TotalPieceError')
+            return False
+            break
+
+    print('<--- CHESS DICTIONARY VALIDATOR --->')
+    print(f' - White King   = [{wKing}/1]')
+    print(f' - Black King   = [{bKing}/1]')
+    print(f' - White Pawns  = [{wPawn}/8]')
+    print(f' - Black Panws  = [{bPawn}/8]')
+    print(f' - White Pieces = [{wPieces}/16]')
+    print(f' - Black Pieces = [{bPieces}/16]')
+
+    print()
+    printBoard()
+
+isValidBoard(chessBoard)
